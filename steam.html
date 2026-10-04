@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam - La Plataforma Definitive de Videojuegos</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Motif Motiva Sans or Inter style -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        steam: {
+                            base: '#171a21',
+                            card: '#1b2838',
+                            hover: '#2a475e',
+                            light: '#66c0f4',
+                            accent: '#c7d5e0',
+                            green: '#a4d007',
+                            greenDark: '#5c7e10',
+                            greenHover: '#bbf109'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "radial-gradient(circle at 50% 30%, rgba(42, 71, 94, 0.4) 0%, rgba(23, 26, 33, 0.95) 70%, rgba(23, 26, 33, 1) 100%)",
+                        'glow-gradient': "radial-gradient(circle, rgba(102, 192, 244, 0.15) 0%, rgba(0, 0, 0, 0) 70%)"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Personalización de barra de desplazamiento estilo Steam */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171a21;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a475e;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #66c0f4;
+        }
+        
+        .steam-card-glow {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .steam-card-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(102, 192, 244, 0.2), 0 8px 10px -6px rgba(102, 192, 244, 0.1);
+        }
+        
+        /* Animación suave para pulse */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-steam-base text-steam-accent font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar / Encabezado -->
+    <header class="sticky top-0 z-50 bg-steam-base/90 backdrop-blur-md border-b border-steam-hover/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo de Steam SVG HD -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <svg class="h-10 w-10 text-white fill-current group-hover:text-steam-light transition-colors duration-300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.03 4.524 4.524s-2.03 4.524-4.524 4.524h-.105l-4.076 2.911c0 .052.005.105.005.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12zm-3.61 14.88c0 .002 0 .003 0 .005 0 .935.759 1.694 1.695 1.694.935 0 1.694-.759 1.694-1.694 0-.936-.759-1.695-1.694-1.695-.936 0-1.695.759-1.695 1.69 0 .002 0 .003 0 .005zm7.573-8.21c-1.252 0-2.267 1.016-2.267 2.268 0 1.251 1.015 2.267 2.267 2.267 1.251 0 2.267-1.016 2.267-2.267 0-1.252-1.016-2.268-2.267-2.268z"/>
+                </svg>
+                <span class="text-2xl font-black tracking-wider text-white uppercase">STEAM</span>
+            </a>
+
+            <!-- Navegación & Botón de Instalación -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-steam-light transition-colors">¿Qué es?</a>
+                <a href="#features" class="hover:text-steam-light transition-colors">Características</a>
+                <a href="#community" class="hover:text-steam-light transition-colors">Comunidad</a>
+                <a href="#platforms" class="hover:text-steam-light transition-colors">Dispositivos</a>
+            </nav>
+
+            <a href="https://store.steampowered.com/about/" target="_blank" rel="noopener noreferrer" 
+               class="bg-gradient-to-r from-steam-greenDark to-steam-green hover:from-steam-green hover:to-steam-greenHover text-white font-bold py-2.5 px-6 rounded shadow-lg shadow-steam-greenDark/40 transform hover:scale-105 transition-all duration-200 flex items-center space-x-2">
+                <i class="fa-solid fa-download text-sm">
+                </i>
+                <span>Instalar Steam</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-hero-pattern py-24 lg:py-32 overflow-hidden border-b border-steam-hover/20">
+        <div class="absolute inset-0 bg-glow-gradient pointer-events-none animate-pulse-slow"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-steam-card/80 border border-steam-light/30 rounded-full px-4 py-1.5 text-xs font-semibold text-steam-light backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-steam-green animate-ping"></span>
+                        <span>La plataforma de PC más grande del mundo</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                        El destino definitivo para <span class="text-transparent bg-clip-text bg-gradient-to-r from-steam-light via-blue-400 to-indigo-300">jugar, discutir y crear</span>.
+                    </h1>
+
+                    <p class="text-lg text-steam-accent/90 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Desarrollado por Valve, Steam ofrece acceso instantáneo a miles de juegos, ofertas exclusivas, guardado en la nube y una vibrante comunidad de millones de jugadores.
+                    </p>
+
+                    <!-- Botones de Acción -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="https://store.steampowered.com/about/" target="_blank" rel="noopener noreferrer" 
+                           class="w-full sm:w-auto bg-gradient-to-r from-steam-greenDark to-steam-green hover:from-steam-green hover:to-steam-greenHover text-white font-bold py-4 px-8 rounded-lg text-lg shadow-xl shadow-steam-green/20 transform hover:-translate-y-1 transition-all duration-200 flex items-center justify-center space-x-3">
+                            <i class="fa-solid fa-download text-xl"></i>
+                            <span>Descargar Steam Gratis</span>
+                        </a>
+
+                        <a href="#about" class="w-full sm:w-auto bg-steam-card hover:bg-steam-hover text-white font-semibold py-4 px-8 rounded-lg border border-steam-hover transition-colors duration-200 text-center">
+                            Saber más
+                        </a>
+                    </div>
+
+                    <!-- Datos rápidos -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-steam-hover/30 text-center lg:text-left">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">30M+</p>
+                            <p class="text-xs text-steam-accent/70">Jugadores Online</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">50,000+</p>
+                            <p class="text-xs text-steam-accent/70">Juegos Disponibles</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">100M+</p>
+                            <p class="text-xs text-steam-accent/70">Usuarios Activos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic/Visual Hero -->
+                <div class="relative flex justify-center items-center">
+                    <div class="relative w-full max-w-md lg:max-w-none">
+                        <!-- Círculos brillantes decorativos -->
+                        <div class="absolute -top-10 -left-10 w-72 h-72 bg-steam-light/10 rounded-full blur-3xl"></div>
+                        <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-steam-green/10 rounded-full blur-3xl"></div>
+
+                        <!-- Tarjeta Principal con Logo en 3D/Glow -->
+                        <div class="bg-gradient-to-b from-steam-card to-steam-base p-8 sm:p-12 rounded-2xl border border-steam-hover/50 shadow-2xl backdrop-blur-xl relative z-10 text-center">
+                            <div class="w-32 h-32 mx-auto mb-6 bg-gradient-to-tr from-steam-hover to-steam-light/20 rounded-full p-6 flex items-center justify-center shadow-inner border border-steam-light/30">
+                                <svg class="w-20 h-20 text-steam-light drop-shadow-[0_0_15px_rgba(102,192,244,0.6)]" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.03 4.524 4.524s-2.03 4.524-4.524 4.524h-.105l-4.076 2.911c0 .052.005.105.005.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12zm-3.61 14.88c0 .002 0 .003 0 .005 0 .935.759 1.694 1.695 1.694.935 0 1.694-.759 1.694-1.694 0-.936-.759-1.695-1.694-1.695-.936 0-1.695.759-1.695 1.69 0 .002 0 .003 0 .005zm7.573-8.21c-1.252 0-2.267 1.016-2.267 2.268 0 1.251 1.015 2.267 2.267 2.267 1.251 0 2.267-1.016 2.267-2.267 0-1.252-1.016-2.268-2.267-2.268z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Cliente de Escritorio</h3>
+                            <p class="text-sm text-steam-accent/80 mb-6">Disponible para Windows, macOS y Linux. Actualizado constantemente.</p>
+                            <div class="flex items-center justify-center space-x-6 text-steam-accent/60 text-2xl">
+                                <i class="fa-brands fa-windows hover:text-steam-light transition-colors" title="Windows"></i>
+                                <i class="fa-brands fa-apple hover:text-steam-light transition-colors" title="macOS"></i>
+                                <i class="fa-brands fa-linux hover:text-steam-light transition-colors" title="Linux"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Explicativa: ¿Qué es Steam? -->
+    <section id="about" class="py-20 bg-steam-base relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">¿Qué es Steam?</h2>
+                <div class="w-20 h-1 bg-steam-light mx-auto rounded-full mb-6"></div>
+                <p class="text-lg text-steam-accent/90 leading-relaxed">
+                    Steam es la plataforma líder mundial de **distribución digital de videojuegos**, lanzada en septiembre de 2003 por la empresa **Valve Corporation**. Lo que comenzó como un lanzador para actualizar títulos como *Counter-Strike*, evolucionó para convertirse en el ecosistema de juegos para PC más completo del planeta.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Punto 1 -->
+                <div class="bg-steam-card p-8 rounded-xl border border-steam-hover/40 steam-card-glow">
+                    <div class="w-12 h-12 bg-steam-hover/60 rounded-lg flex items-center justify-center text-steam-light text-2xl mb-6">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Tienda Digital</h3>
+                    <p class="text-steam-accent/80 text-sm leading-relaxed">
+                        Compra y descarga instantáneamente miles de títulos, desde grandes producciones AAA hasta proyectos independientes únicos.
+                    </p>
+                </div>
+
+                <!-- Punto 2 -->
+                <div class="bg-steam-card p-8 rounded-xl border border-steam-hover/40 steam-card-glow">
+                    <div class="w-12 h-12 bg-steam-hover/60 rounded-lg flex items-center justify-center text-steam-light text-2xl mb-6">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Ecosistema Social</h3>
+                    <p class="text-steam-accent/80 text-sm leading-relaxed">
+                        Conéctate con amigos, únete a grupos, comparte capturas de pantalla, realiza transmisiones en vivo y chatea por voz en tiempo real.
+                    </p>
+                </div>
+
+                <!-- Punto 3 -->
+                <div class="bg-steam-card p-8 rounded-xl border border-steam-hover/40 steam-card-glow">
+                    <div class="w-12 h-12 bg-steam-hover/60 rounded-lg flex items-center justify-center text-steam-light text-2xl mb-6">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Centro de Creadores</h3>
+                    <p class="text-steam-accent/80 text-sm leading-relaxed">
+                        Accede a modificaciones (mods) creadas por la comunidad mediante Steam Workshop o publica tus propios juegos con Steam Direct.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características Principales -->
+    <section id="features" class="py-20 bg-gradient-to-b from-steam-base via-steam-card/40 to-steam-base border-t border-b border-steam-hover/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Características Destacadas</h2>
+                <p class="text-steam-accent/80 max-w-2xl mx-auto">Diseñado por gamers para ofrecer la mejor experiencia posible de juego en computadora.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Tarjeta 1: Ofertas de Steam -->
+                <div class="bg-steam-card/90 p-6 rounded-xl border border-steam-hover/50 hover:border-steam-light/50 transition-all steam-card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="p-3 bg-gradient-to-br from-blue-600 to-steam-hover rounded-lg text-white text-xl">
+                                <i class="fa-solid fa-tags"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Ofertas & Descuentos</h3>
+                        </div>
+                        <p class="text-sm text-steam-accent/80 mb-4">
+                            Famosas rebajas de temporada (Summer Sale, Winter Sale) con descuentos masivos de hasta 90% en miles de títulos.
+                        </p>
+                    </div>
+                    <span class="text-xs text-steam-light font-semibold uppercase tracking-wider">Steam Sales</span>
+                </div>
+
+                <!-- Tarjeta 2: Guardado en la Nube -->
+                <div class="bg-steam-card/90 p-6 rounded-xl border border-steam-hover/50 hover:border-steam-light/50 transition-all steam-card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="p-3 bg-gradient-to-br from-blue-600 to-steam-hover rounded-lg text-white text-xl">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Steam Cloud</h3>
+                        </div>
+                        <p class="text-sm text-steam-accent/80 mb-4">
+                            Tus partidas guardadas se sincronizan automáticamente en la nube. Continúa exactamente donde lo dejaste en cualquier PC.
+                        </p>
+                    </div>
+                    <span class="text-xs text-steam-light font-semibold uppercase tracking-wider">Sincronización Total</span>
+                </div>
+
+                <!-- Tarjeta 3: Logros -->
+                <div class="bg-steam-card/90 p-6 rounded-xl border border-steam-hover/50 hover:border-steam-light/50 transition-all steam-card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="p-3 bg-gradient-to-br from-blue-600 to-steam-hover rounded-lg text-white text-xl">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Logros & Estadísticas</h3>
+                        </div>
+                        <p class="text-sm text-steam-accent/80 mb-4">
+                            Desbloquea logros desafiantes, sube de nivel tu perfil de Steam y presume tus hazañas en tu escaparate personal.
+                        </p>
+                    </div>
+                    <span class="text-xs text-steam-light font-semibold uppercase tracking-wider">Achievements</span>
+                </div>
+
+                <!-- Tarjeta 4: Steam Workshop -->
+                <div class="bg-steam-card/90 p-6 rounded-xl border border-steam-hover/50 hover:border-steam-light/50 transition-all steam-card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="p-3 bg-gradient-to-br from-blue-600 to-steam-hover rounded-lg text-white text-xl">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Steam Workshop</h3>
+                        </div>
+                        <p class="text-sm text-steam-accent/80 mb-4">
+                            Descarga contenido creado por jugadores: mapas, skins, mods e ítems adicionales con solo hacer un clic en "Suscribirse".
+                        </p>
+                    </div>
+                    <span class="text-xs text-steam-light font-semibold uppercase tracking-wider">Modding Fácil</span>
+                </div>
+
+                <!-- Tarjeta 5: Mercado de la Comunidad -->
+                <div class="bg-steam-card/90 p-6 rounded-xl border border-steam-hover/50 hover:border-steam-light/50 transition-all steam-card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="p-3 bg-gradient-to-br from-blue-600 to-steam-hover rounded-lg text-white text-xl">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Mercado de la Comunidad</h3>
+                        </div>
+                        <p class="text-sm text-steam-accent/80 mb-4">
+                            Compra y vende objetos virtuales de tus juegos preferidos (como skins o cromos) obteniendo saldo para tu cartera de Steam.
+                        </p>
+                    </div>
+                    <span class="text-xs text-steam-light font-semibold uppercase tracking-wider">Economía Integrada</span>
+                </div>
+
+                <!-- Tarjeta 6: Steam Remote Play -->
+                <div class="bg-steam-card/90 p-6 rounded-xl border border-steam-hover/50 hover:border-steam-light/50 transition-all steam-card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="p-3 bg-gradient-to-br from-blue-600 to-steam-hover rounded-lg text-white text-xl">
+                                <i class="fa-solid fa-tower-broadcast"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Remote Play</h3>
+                        </div>
+                        <p class="text-sm text-steam-accent/80 mb-4">
+                            Transmite tus juegos desde tu PC hacia tu teléfono, tablet o TV. Juega con amigos localmente a través de internet con Together.
+                        </p>
+                    </div>
+                    <span class="text-xs text-steam-light font-semibold uppercase tracking-wider">Streaming en Vivo</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Multiplataforma & Steam Deck -->
+    <section id="platforms" class="py-20 bg-steam-base">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-steam-card via-steam-hover/40 to-steam-card rounded-2xl border border-steam-hover p-8 lg:p-12 overflow-hidden relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <span class="text-steam-light font-bold text-sm tracking-widest uppercase">Hardware & Portabilidad</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">Tus juegos a donde vayas con Steam Deck</h2>
+                        <p class="text-steam-accent/90 mb-6 leading-relaxed">
+                            Steam es compatible con múltiples sistemas operativos (**Windows, macOS y Linux** gracias a Proton). Además, con la consola portátil **Steam Deck**, puedes llevar toda tu biblioteca de PC en la palma de tu mano.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center space-x-3 text-sm text-white">
+                                <i class="fa-solid fa-circle-check text-steam-green"></i>
+                                <span>Lanza tus juegos al instante sin configuraciones complejas</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-sm text-white">
+                                <i class="fa-solid fa-circle-check text-steam-green"></i>
+                                <span>Garantía de rendimiento con el sistema de verificación Steam Deck Verified</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-sm text-white">
+                                <i class="fa-solid fa-circle-check text-steam-green"></i>
+                                <span>Cross-play y guardado cruzado entre tu consola y tu PC</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Visual Consola / Ilustración -->
+                    <div class="flex justify-center">
+                        <div class="bg-steam-base/80 p-6 rounded-xl border border-steam-light/20 w-full max-w-md text-center shadow-2xl">
+                            <i class="fa-solid fa-gamepad text-6xl text-steam-light mb-4"></i>
+                            <h4 class="text-xl font-bold text-white mb-2">SteamOS</h4>
+                            <p class="text-xs text-steam-accent/70 mb-4">El sistema operativo basado en Arch Linux diseñado exclusivamente para la mejor experiencia de juego.</p>
+                            <div class="inline-block bg-steam-hover/50 px-4 py-2 rounded text-xs font-mono text-steam-light border border-steam-light/30">
+                                Powered by Valve Proton
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final / Sección de Descarga -->
+    <section class="py-20 bg-gradient-to-t from-black via-steam-card to-steam-base border-t border-steam-hover/30 relative">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            
+            <svg class="w-16 h-16 mx-auto text-white mb-6 fill-current" viewBox="0 0 24 24">
+                <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.03 4.524 4.524s-2.03 4.524-4.524 4.524h-.105l-4.076 2.911c0 .052.005.105.005.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12zm-3.61 14.88c0 .002 0 .003 0 .005 0 .935.759 1.694 1.695 1.694.935 0 1.694-.759 1.694-1.694 0-.936-.759-1.695-1.694-1.695-.936 0-1.695.759-1.695 1.69 0 .002 0 .003 0 .005zm7.573-8.21c-1.252 0-2.267 1.016-2.267 2.268 0 1.251 1.015 2.267 2.267 2.267 1.251 0 2.267-1.016 2.267-2.267 0-1.252-1.016-2.268-2.268z"/>
+            </svg>
+
+            <h2 class="text-3xl sm:text-5xl font-black text-white mb-6">
+                ¿Listo para empezar a jugar?
+            </h2>
+
+            <p class="text-lg text-steam-accent/80 max-w-2xl mx-auto mb-8">
+                Descarga el instalador oficial de Steam totalmente gratis y accede inmediatamente a tu biblioteca y comunidad global.
+            </p>
+
+            <a href="https://store.steampowered.com/about/" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center space-x-3 bg-gradient-to-r from-steam-greenDark via-steam-green to-steam-greenHover text-white font-extrabold text-xl py-5 px-10 rounded-xl shadow-2xl shadow-steam-green/30 transform hover:scale-105 transition-all duration-300">
+                <i class="fa-solid fa-download"></i>
+                <span>DESCARGAR STEAM AHORA</span>
+            </a>
+
+            <p class="text-xs text-steam-accent/50 mt-6">
+                Disponible para Windows PC, Mac y Linux | Gratuito
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-10 border-t border-steam-hover/20 text-xs text-steam-accent/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-3">
+                    <span class="text-white font-bold text-lg">VALVE</span>
+                    <span>|</span>
+                    <span class="text-steam-light font-bold text-lg">STEAM</span>
+                </div>
+                <p class="text-center md:text-left max-w-xl">
+                    © Valve Corporation. Todos los derechos reservados. Todas las marcas registradas pertenecen a sus respectivos dueños en EE. UU. y otros países.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="https://store.steampowered.com/privacy_agreement/" target="_blank" class="hover:text-white transition-colors">Privacidad</a>
+                    <a href="https://store.steampowered.com/legal" target="_blank" class="hover:text-white transition-colors">Legal</a>
+                    <a href="https://store.steampowered.com/subscriber_agreement/" target="_blank" class="hover:text-white transition-colors">Acuerdo de Suscriptor</a>
+                </div>
+            </div>
+        </div>
+    </footer>
